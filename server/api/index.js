@@ -10,31 +10,29 @@ dotenv.config();
 
 const app = express();
 
+// Add a simple test route FIRST to verify function is being invoked
+app.all('*', (req, res, next) => {
+  // Always set CORS headers manually as fallback
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  next();
+});
+
 // For Vercel serverless, we need to handle the base path
 // When Vercel rewrites /api/* to this function, the path includes /api
 
-// Middleware - CORS
+// Middleware - CORS (using cors package)
 // Allow all origins in production for monorepo deployment
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (server-to-server, Postman, etc.)
-    if (!origin) {
-      return callback(null, true);
-    }
-    
-    // In production, allow all origins (for monorepo same-domain deployment)
-    // In development, allow localhost
-    const allowedOrigins = process.env.NODE_ENV === 'production' 
-      ? true  // Allow all in production
-      : ['http://localhost:3000', 'http://localhost:5000'];
-    
-    if (allowedOrigins === true || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.warn('CORS blocked origin:', origin);
-      callback(null, true); // Still allow for now to debug
-    }
-  },
+  origin: '*', // Allow all origins - simplest for debugging
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -84,13 +82,26 @@ app.use('/api/books', require('../routes/bookRoutes'));
 app.use('/auth', require('../routes/authRoutes'));
 app.use('/books', require('../routes/bookRoutes'));
 
-// Root test route
+// Root test route - should always work if function is invoked
 app.get('/', (req, res) => {
+  console.log('Root route hit!', req.path, req.originalUrl);
   res.json({ 
     message: 'API Server is running',
     timestamp: new Date().toISOString(),
     path: req.path,
-    originalUrl: req.originalUrl
+    originalUrl: req.originalUrl,
+    method: req.method,
+    headers: req.headers
+  });
+});
+
+// Test route that doesn't require database
+app.get('/api/test', (req, res) => {
+  console.log('Test route hit!', req.path);
+  res.json({ 
+    message: 'Test endpoint working!',
+    timestamp: new Date().toISOString(),
+    path: req.path
   });
 });
 
