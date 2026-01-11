@@ -64,6 +64,9 @@
 .dark-mode .library-page h1 {
   color: #e0e0e0;
 }
+.dark-mode .library-page  {
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
 
 .dark-mode .library-stats {
   color: #b0b0b0;
