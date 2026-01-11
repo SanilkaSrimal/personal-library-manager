@@ -160,6 +160,9 @@ npm start
 ```
 
 The server will run on `http://localhost:5000`
+## Database
+The application supports MongoDB Atlas using a connection string via environment variables.
+
 
 ### Frontend Setup
 
