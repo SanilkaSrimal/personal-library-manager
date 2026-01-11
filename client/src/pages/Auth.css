@@ -96,3 +96,35 @@
 .auth-switch a:hover {
   text-decoration: underline;
 }
+
+/* Dark Mode */
+.dark-mode .auth-page {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.dark-mode .auth-container {
+  background: #2d2d2d;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .auth-container h1 {
+  color: #e0e0e0;
+}
+
+.dark-mode .form-group label {
+  color: #e0e0e0;
+}
+
+.dark-mode .form-group input {
+  background-color: #1a1a1a;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.dark-mode .form-group input:focus {
+  border-color: #3498db;
+}
+
+.dark-mode .auth-switch {
+  color: #b0b0b0;
+}

@@ -11,6 +11,7 @@
 .search-page h1 {
   color: #2c3e50;
   margin-bottom: 2rem;
+  transition: color 0.3s ease;
 }
 
 .search-form-page {
@@ -25,7 +26,9 @@
   font-size: 1rem;
   border: 2px solid #bdc3c7;
   border-radius: 8px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  background-color: white;
+  color: #2c3e50;
 }
 
 .search-input-page:focus {
@@ -53,6 +56,74 @@
   cursor: not-allowed;
 }
 
+.search-filters {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  transition: background-color 0.3s ease;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.filter-label {
+  font-weight: 500;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.filter-select {
+  padding: 0.5rem;
+  border: 2px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background-color: white;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.load-more-trigger {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.loading-more {
+  text-align: center;
+  padding: 1rem;
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
 .error-message {
   background-color: #e74c3c;
   color: white;
@@ -66,11 +137,13 @@
   padding: 2rem;
   font-size: 1.2rem;
   color: #7f8c8d;
+  transition: color 0.3s ease;
 }
 
 .search-results h2 {
   color: #2c3e50;
   margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .books-grid {
@@ -84,4 +157,55 @@
   padding: 3rem;
   color: #7f8c8d;
   font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark-mode .search-page h1 {
+  color: #e0e0e0;
+}
+
+.dark-mode .search-input-page {
+  background-color: #2d2d2d;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.dark-mode .search-input-page:focus {
+  border-color: #3498db;
+}
+
+.dark-mode .search-filters {
+  background-color: #2d2d2d;
+}
+
+.dark-mode .filter-label {
+  color: #e0e0e0;
+}
+
+.dark-mode .filter-select {
+  background-color: #1a1a1a;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.dark-mode .filter-select:focus {
+  border-color: #3498db;
+}
+
+.dark-mode .loading {
+  color: #b0b0b0;
+}
+
+.dark-mode .search-results h2 {
+  color: #e0e0e0;
+}
+
+.dark-mode .no-results,
+.dark-mode .search-prompt {
+  color: #b0b0b0;
+}
+
+.dark-mode .loading-more {
+  color: #b0b0b0;
 }

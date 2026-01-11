@@ -4,7 +4,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s ease;
 }
 
 .book-card:hover {
@@ -33,6 +33,7 @@
   margin: 0 0 0.5rem 0;
   color: #2c3e50;
   font-size: 1.3rem;
+  transition: color 0.3s ease;
 }
 
 .book-subtitle {
@@ -40,18 +41,21 @@
   color: #7f8c8d;
   font-size: 1rem;
   font-style: italic;
+  transition: color 0.3s ease;
 }
 
 .book-authors {
   margin: 0 0 1rem 0;
   color: #34495e;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .book-description {
   margin: 0 0 1rem 0;
   color: #555;
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
 .book-actions {
@@ -120,6 +124,7 @@
   margin-right: 0.5rem;
   font-weight: 500;
   color: #2c3e50;
+  transition: color 0.3s ease;
 }
 
 .reading-status select {
@@ -127,6 +132,9 @@
   border: 1px solid #bdc3c7;
   border-radius: 4px;
   font-size: 0.9rem;
+  background-color: white;
+  color: #2c3e50;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
 }
 
 .personal-review {
@@ -139,6 +147,7 @@
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: #2c3e50;
+  transition: color 0.3s ease;
 }
 
 .review-editor {
@@ -155,7 +164,9 @@
   font-size: 0.9rem;
   font-family: inherit;
   resize: vertical;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  background-color: white;
+  color: #2c3e50;
 }
 
 .review-textarea:focus {
@@ -210,6 +221,7 @@
   line-height: 1.6;
   min-height: 3rem;
   white-space: pre-wrap;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .edit-review-button {
@@ -226,6 +238,61 @@
 
 .edit-review-button:hover {
   background-color: #2980b9;
+}
+
+/* Dark Mode */
+.dark-mode .book-card {
+  background: #2d2d2d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .book-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .book-title {
+  color: #e0e0e0;
+}
+
+.dark-mode .book-subtitle {
+  color: #b0b0b0;
+}
+
+.dark-mode .book-authors {
+  color: #d0d0d0;
+}
+
+.dark-mode .book-description {
+  color: #c0c0c0;
+}
+
+.dark-mode .reading-status label {
+  color: #e0e0e0;
+}
+
+.dark-mode .reading-status select {
+  background-color: #1a1a1a;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.dark-mode .personal-review label {
+  color: #e0e0e0;
+}
+
+.dark-mode .review-textarea {
+  background-color: #1a1a1a;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.dark-mode .review-text {
+  background-color: #1a1a1a;
+  color: #c0c0c0;
+}
+
+.dark-mode .book-library-actions {
+  border-top-color: #555;
 }
 
 @media (max-width: 768px) {
