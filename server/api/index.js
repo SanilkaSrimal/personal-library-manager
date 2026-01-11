@@ -10,21 +10,34 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-const allowedOrigins = process.env.FRONTEND_URL 
-  ? [process.env.FRONTEND_URL, 'http://localhost:3000']
-  : ['http://localhost:3000', '*'];
+// For Vercel serverless, we need to handle the base path
+// When Vercel rewrites /api/* to this function, the path includes /api
 
+// Middleware - CORS
+// Allow all origins in production for monorepo deployment
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+    // Allow requests with no origin (server-to-server, Postman, etc.)
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    // In production, allow all origins (for monorepo same-domain deployment)
+    // In development, allow localhost
+    const allowedOrigins = process.env.NODE_ENV === 'production' 
+      ? true  // Allow all in production
+      : ['http://localhost:3000', 'http://localhost:5000'];
+    
+    if (allowedOrigins === true || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.warn('CORS blocked origin:', origin);
+      callback(null, true); // Still allow for now to debug
     }
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
@@ -53,26 +66,41 @@ app.use(async (req, res, next) => {
 
 // Logging middleware for debugging
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`, {
-    query: req.query,
-    body: req.method !== 'GET' ? '***' : undefined
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`, {
+    originalUrl: req.originalUrl,
+    baseUrl: req.baseUrl,
+    query: req.query
   });
   next();
 });
 
 // Routes
-// Handle both /api/auth and /auth paths (for different deployment scenarios)
+// When Vercel rewrites /api/* to this function, Express receives the full path including /api
+// So /api/auth/signup becomes req.path = /api/auth/signup
 app.use('/api/auth', require('../routes/authRoutes'));
 app.use('/api/books', require('../routes/bookRoutes'));
+
+// Also handle paths without /api prefix (for flexibility)
 app.use('/auth', require('../routes/authRoutes'));
 app.use('/books', require('../routes/bookRoutes'));
+
+// Root test route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'API Server is running',
+    timestamp: new Date().toISOString(),
+    path: req.path,
+    originalUrl: req.originalUrl
+  });
+});
 
 // Health check route - handle both paths
 app.get('/api/health', (req, res) => {
   res.json({ 
     message: 'Server is running',
     timestamp: new Date().toISOString(),
-    path: req.path
+    path: req.path,
+    originalUrl: req.originalUrl
   });
 });
 
@@ -80,7 +108,8 @@ app.get('/health', (req, res) => {
   res.json({ 
     message: 'Server is running',
     timestamp: new Date().toISOString(),
-    path: req.path
+    path: req.path,
+    originalUrl: req.originalUrl
   });
 });
 
