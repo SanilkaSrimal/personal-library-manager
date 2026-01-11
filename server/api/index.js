@@ -61,16 +61,26 @@ app.use((req, res, next) => {
 });
 
 // Routes
-// When Vercel routes /api/* to this function, the path received is without /api
-// So /api/auth/signup becomes /auth/signup in the function
+// Handle both /api/auth and /auth paths (for different deployment scenarios)
+app.use('/api/auth', require('../routes/authRoutes'));
+app.use('/api/books', require('../routes/bookRoutes'));
 app.use('/auth', require('../routes/authRoutes'));
 app.use('/books', require('../routes/bookRoutes'));
 
-// Health check route
+// Health check route - handle both paths
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    message: 'Server is running',
+    timestamp: new Date().toISOString(),
+    path: req.path
+  });
+});
+
 app.get('/health', (req, res) => {
   res.json({ 
     message: 'Server is running',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    path: req.path
   });
 });
 
