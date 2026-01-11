@@ -2,7 +2,7 @@
 
 A full-stack MERN (MongoDB, Express, React, Node.js) web application that allows users to search books using the Google Books API, create accounts, and manage their personal library with CRUD operations.
 
-## 🚀 Features
+## Features
 
 ### Public Features (No Login Required)
 - **Search Books**: Search for books by title, author, or keyword using Google Books API
@@ -35,7 +35,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) web application that allows
   - JWT-based authentication
   - Protected API routes with middleware
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - **React.js** - UI library
@@ -56,7 +56,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) web application that allows
 ### External API
 - **Google Books API** - Book search and information
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 personal-library-manager/
@@ -114,7 +114,7 @@ personal-library-manager/
 └── README.md
 ```
 
-## 🔧 Setup Instructions
+##  Setup Instructions
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -188,7 +188,7 @@ npm start
 
 The client will run on `http://localhost:3000`
 
-## 🔐 Environment Variables
+##  Environment Variables
 
 ### Server (.env)
 - `PORT` - Server port (default: 5000)
@@ -199,7 +199,7 @@ The client will run on `http://localhost:3000`
 ### Client (.env)
 - `REACT_APP_API_URL` - Backend API URL (default: http://localhost:5000/api)
 
-## 📡 API Endpoints
+##  API Endpoints
 
 ### Authentication
 - `POST /api/auth/signup` - Register a new user
@@ -213,7 +213,7 @@ The client will run on `http://localhost:3000`
 - `PUT /api/books/:id` - Update a book (reading status, review)
 - `DELETE /api/books/:id` - Delete a book from library
 
-## 🏗️ Architectural Decisions
+##  Architectural Decisions
 
 ### Axios Interceptors
 - **Request Interceptor**: Automatically attaches JWT token from localStorage to all API requests, eliminating the need to manually add headers in every service call.
@@ -236,14 +236,14 @@ The client will run on `http://localhost:3000`
 - Protected routes verify user ownership before allowing updates/deletes
 - Input validation on both client and server
 
-## 🎨 UI/UX Features
+##  UI/UX Features
 - Responsive design for mobile and desktop
 - Loading indicators during API calls
 - Error messages for failed operations
 - Clean, modern interface
 - Smooth transitions and hover effects
 
-## 🚧 Future Enhancements (Optional)
+##  Future Enhancements (Optional)
 - Pagination or infinite scroll for search results
 - Search filters (Free E-books, Print Type)
 - Dark mode toggle
@@ -252,11 +252,11 @@ The client will run on `http://localhost:3000`
 - Reading progress tracking
 - Export library to CSV/JSON
 
-## 📝 License
+##  License
 
 This project is open source and available for educational purposes.
 
-## 👨‍💻 Development
+##  Development
 
 ### Running Both Servers
 In separate terminal windows:
