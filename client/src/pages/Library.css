@@ -1,0 +1,51 @@
+.library-page {
+  min-height: calc(100vh - 200px);
+  padding: 2rem;
+}
+
+.library-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.library-page h1 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.library-stats {
+  margin-bottom: 2rem;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.empty-library {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #7f8c8d;
+}
+
+.empty-library p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.books-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+.error-message {
+  background-color: #e74c3c;
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}

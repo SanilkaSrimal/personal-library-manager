@@ -1,0 +1,241 @@
+.book-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-card-content {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.book-thumbnail {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.book-title {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 1.3rem;
+}
+
+.book-subtitle {
+  margin: 0 0 0.5rem 0;
+  color: #7f8c8d;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.book-authors {
+  margin: 0 0 1rem 0;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.book-description {
+  margin: 0 0 1rem 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.book-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.view-button,
+.save-button,
+.delete-button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.view-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.view-button:hover {
+  background-color: #2980b9;
+}
+
+.save-button {
+  background-color: #27ae60;
+  color: white;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: #229954;
+}
+
+.save-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.book-library-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ecf0f1;
+}
+
+.reading-status {
+  margin-bottom: 1rem;
+}
+
+.reading-status label {
+  margin-right: 0.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.reading-status select {
+  padding: 0.4rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.personal-review {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.personal-review label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.review-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.review-textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.review-textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.review-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.save-review-button,
+.cancel-review-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.save-review-button {
+  background-color: #27ae60;
+  color: white;
+}
+
+.save-review-button:hover {
+  background-color: #229954;
+}
+
+.cancel-review-button {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.cancel-review-button:hover {
+  background-color: #7f8c8d;
+}
+
+.review-display {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.review-text {
+  padding: 0.8rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  color: #555;
+  line-height: 1.6;
+  min-height: 3rem;
+  white-space: pre-wrap;
+}
+
+.edit-review-button {
+  padding: 0.5rem 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  align-self: flex-start;
+}
+
+.edit-review-button:hover {
+  background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .book-card-content {
+    flex-direction: column;
+  }
+
+  .book-thumbnail {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+  }
+}
