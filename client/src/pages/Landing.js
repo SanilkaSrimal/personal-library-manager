@@ -16,7 +16,7 @@ const Landing = () => {
   return (
     <div className="landing">
       <div className="landing-content">
-        <h1 className="landing-title">📚 Personal Library Manager</h1>
+        <h1 className="landing-title"> Personal Library Manager</h1>
         <p className="landing-subtitle">
           Discover, save, and manage your favorite books
         </p>

@@ -1,6 +1,7 @@
 .search-page {
   min-height: calc(100vh - 200px);
   padding: 2rem;
+  background-color: #fafafa;
 }
 
 .search-container {
@@ -12,6 +13,9 @@
   color: #2c3e50;
   margin-bottom: 2rem;
   transition: color 0.3s ease;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .search-form-page {
@@ -22,33 +26,39 @@
 
 .search-input-page {
   flex: 1;
-  padding: 1rem;
-  font-size: 1rem;
-  border: 2px solid #bdc3c7;
-  border-radius: 8px;
-  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  transition: all 0.3s ease;
   background-color: white;
   color: #2c3e50;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .search-input-page:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #667eea;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
 }
 
 .search-button-page {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  background-color: #3498db;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
 }
 
 .search-button-page:hover:not(:disabled) {
-  background-color: #2980b9;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
 }
 
 .search-button-page:disabled {
@@ -60,11 +70,14 @@
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  border-radius: 20px;
   flex-wrap: wrap;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .filter-group {
@@ -94,19 +107,21 @@
 }
 
 .filter-select {
-  padding: 0.5rem;
-  border: 2px solid #bdc3c7;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  padding: 0.7rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 0.95rem;
   background-color: white;
   color: #2c3e50;
   cursor: pointer;
-  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .filter-select:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #667eea;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
 }
 
 .load-more-trigger {
@@ -119,17 +134,27 @@
 
 .loading-more {
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem;
   color: #7f8c8d;
   font-size: 1rem;
+  font-weight: 500;
 }
 
 .error-message {
-  background-color: #e74c3c;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   color: white;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 1.2rem;
+  border-radius: 16px;
   margin-bottom: 1rem;
+  box-shadow: 0 6px 20px rgba(250, 112, 154, 0.3);
+  font-weight: 500;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
 }
 
 .loading {
@@ -144,6 +169,16 @@
   color: #2c3e50;
   margin-bottom: 1.5rem;
   transition: color 0.3s ease;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-results h2::before {
+  content: '📚';
+  font-size: 1.3rem;
 }
 
 .books-grid {
@@ -164,19 +199,27 @@
 .dark-mode .search-page h1 {
   color: #e0e0e0;
 }
+.dark-mode .search-page {
+  min-height: calc(100vh - 200px);
+  padding: 2rem;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+
+}
 
 .dark-mode .search-input-page {
-  background-color: #2d2d2d;
-  border-color: #555;
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.9) 0%, rgba(30, 30, 40, 0.9) 100%);
+  border-color: rgba(255, 255, 255, 0.2);
   color: #e0e0e0;
 }
 
 .dark-mode .search-input-page:focus {
-  border-color: #3498db;
+  border-color: #667eea;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 .dark-mode .search-filters {
-  background-color: #2d2d2d;
+  background: linear-gradient(135deg, rgba(45, 45, 50, 0.8) 0%, rgba(30, 30, 40, 0.8) 100%);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .dark-mode .filter-label {
