@@ -45,12 +45,16 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const data = await authService.signup(username, email, password);
+      if (!data || !data.token) {
+        throw new Error('Invalid response from server');
+      }
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
       setUser(data);
       return data;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Signup failed';
+      console.error('Signup error:', err);
+      const errorMessage = err.response?.data?.message || err.message || 'Signup failed. Please check your connection and try again.';
       setError(errorMessage);
       throw new Error(errorMessage);
     }
@@ -60,12 +64,16 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const data = await authService.login(email, password);
+      if (!data || !data.token) {
+        throw new Error('Invalid response from server');
+      }
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
       setUser(data);
       return data;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Login failed';
+      console.error('Login error:', err);
+      const errorMessage = err.response?.data?.message || err.message || 'Login failed. Please check your credentials and try again.';
       setError(errorMessage);
       throw new Error(errorMessage);
     }

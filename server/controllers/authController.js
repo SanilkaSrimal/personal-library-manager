@@ -49,7 +49,21 @@ const signup = async (req, res) => {
     }
   } catch (error) {
     console.error('Signup error:', error);
-    res.status(500).json({ message: 'Server error during signup' });
+    // Provide more specific error messages
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ 
+        message: Object.values(error.errors).map(e => e.message).join(', ')
+      });
+    }
+    if (error.code === 11000) {
+      return res.status(400).json({ 
+        message: 'Email or username already exists' 
+      });
+    }
+    res.status(500).json({ 
+      message: 'Server error during signup',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 };
 
@@ -80,7 +94,10 @@ const login = async (req, res) => {
     }
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+    res.status(500).json({ 
+      message: 'Server error during login',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 };
 

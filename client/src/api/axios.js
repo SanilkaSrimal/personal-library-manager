@@ -28,6 +28,21 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    // Log error for debugging
+    console.error('API Error:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: error.response?.status,
+      message: error.response?.data?.message || error.message,
+      data: error.response?.data
+    });
+
+    // Handle network errors
+    if (!error.response) {
+      console.error('Network error - API might be down or URL incorrect');
+      error.message = 'Unable to connect to server. Please check your internet connection and try again.';
+    }
+
     // Handle 401 Unauthorized - Auto logout and redirect
     if (error.response && error.response.status === 401) {
       // Clear token and user data
