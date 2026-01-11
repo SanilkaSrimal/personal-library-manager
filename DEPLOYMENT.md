@@ -91,7 +91,11 @@ Make sure `.gitignore` includes:
 
 5. Click **"Deploy"**
 
-### Option B: Deploy as Monorepo (Single Project)
+### Option B: Deploy as Monorepo (Single Project) - NOT RECOMMENDED
+
+**Note**: This approach is more complex and may have issues. We strongly recommend Option A (separate deployments).
+
+If you still want to try monorepo deployment:
 
 1. Go to [vercel.com](https://vercel.com) and sign in
 2. Click **"Add New Project"**
@@ -113,7 +117,13 @@ Make sure `.gitignore` includes:
 
 6. **Important**: After first deployment, update `REACT_APP_API_URL` with your actual Vercel URL
 
-7. Click **"Deploy"**
+7. The `vercel.json` file in the root will handle routing (API routes to serverless function, frontend routes to React app)
+
+8. Click **"Deploy"**
+
+**Troubleshooting Monorepo Deployment:**
+- If you get routing errors, use Option A (separate deployments) instead
+- The `vercel.json` uses `rewrites` (not `routes`) to avoid conflicts
 
 ---
 
