@@ -6,20 +6,24 @@ const connectDB = require('./config/db');
 // Load env vars
 dotenv.config();
 
-// Connect to database
-connectDB();
-
 const app = express();
-// app.use(cors(
-//   {
-//     origin: ["https://deploy-mearn-lwhq.vercel.app"],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true
-//   }
-// ))
+
+// Connect to database (non-blocking - will retry on first request if needed)
+connectDB().catch(err => {
+  console.error('Initial database connection failed:', err.message);
+  console.log('Server will start, but database operations may fail until connection is established');
+});
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://personal-library-manager-p72i.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:3001"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
