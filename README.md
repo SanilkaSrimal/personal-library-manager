@@ -188,13 +188,6 @@ npm start
 
 The client will run on `http://localhost:3000`
 
-##  Environment Variables
-
-### Server (.env)
-- `PORT` - Server port (default: 5000)
-- `MONGO_URI` - mongodb+srv://Shanilka:shanilka@librarymanagement.k8okhdw.mongodb.net/?appName=libraryManagement
-- `JWT_SECRET` - your-super-secret-jwt-key-change-this-in-production-1517895094
-- `GOOGLE_BOOKS_API_KEY` - Google Books API key (optional, not required for basic functionality)
 
 ### Client (.env)
 - `REACT_APP_API_URL` - Backend API URL (default: http://localhost:5000/api)
